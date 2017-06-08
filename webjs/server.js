@@ -4,6 +4,7 @@
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var mime = require('mime');
 
 // 创建服务器
 http.createServer( function (request, response) {
@@ -31,7 +32,7 @@ http.createServer( function (request, response) {
         //  发送响应数据
         response.end();
     });
-}).listen(8081);
+}).listen(8088);
 
 // 控制台会输出以下信息
-console.log('Server running at http://127.0.0.1:8081/');
+console.log('Server running at http://127.0.0.1:8088/');
