@@ -22,3 +22,8 @@ console.log(numArray.every(checkItem))
 numArray.forEach(chaneArray);
 console.log(numArray.reduce(sum));
 console.log(numArray.reduceRight(sum));
+
+
+function a(b) {
+    b();
+}

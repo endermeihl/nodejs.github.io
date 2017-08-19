@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<script>
+    var color = "red"
+    var noColor = "blue2";
+    var o = {color: "blue"};
+    var test = function () {
+        this.color = "blue3";
+        alert(this.color);
+        (function () {
+            alert(this.noColor);
+        })();
+    }
+    test();
+    test.apply(o);
+
+</script>
+</body>
+</html>
