@@ -1,0 +1,655 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>君睿在线</title>
+    <META name="keywords" content="君睿在线"/>
+    <META name="description" content="君睿在线"/>
+    <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+    <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+    <script src="../script/showlist.js"></script>
+    <script type="text/javascript">
+        function nTabs(thisObj, Num) {
+            if (thisObj.className == "active")return;
+            var tabObj = thisObj.parentNode.id;
+            var tabList = document.getElementById(tabObj).getElementsByTagName("li");
+            for (i = 0; i < tabList.length; i++) {
+                if (i == Num) {
+                    thisObj.className = "active";
+                    document.getElementById(tabObj + "_Content" + i).style.display = "block";
+                } else {
+                    tabList[i].className = "normal";
+                    document.getElementById(tabObj + "_Content" + i).style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onload="ja()">
+
+<div class="top-nav"><!--最顶上灰色导航-->
+    <div class="sub">
+        <ul class="sub_left">
+            <a class="a1">请登录</a>
+            <a class="a2">学员注册</a>
+            <a class="a3">手机版</a>
+        </ul>
+        <ul class="sub_right">
+            <a class="a4">君睿在线首页</a>
+            <a class="a5">我的课堂</a>
+            <a>老师登录</a>
+            <a>机构登录</a>
+            <a class="a8">在线客服</a>
+        </ul>
+    </div>
+</div>
+
+<div class="header"><!--头部logo-->
+    <ul class="flleft">
+        <a href="#" class="logo"></a>
+    </ul>
+    <ul class="flright">
+        <div class="feature-box">
+            <a class="b3">真实评价</a>
+            <a class="b1">老师认证</a>
+            <a class="b2">机构认证</a>
+        </div>
+    </ul>
+</div>
+<!----------导航------------>
+<div class="main_nav">
+    <div id="firstTry_div">
+    </div>
+
+    <ul class="flright">
+        <div class="right_nav">
+            <li><a class="active" href="#">首页</a></li>
+            <li><a href="#" target="_blank">在线课堂</a><i class="icon_hot"></i></li>
+            <li><a href="#" target="_blank">大纲知识点学习</a></li>
+            <li><a href="#" target="_blank">考前辅导</a></li>
+            <li><a href="#" target="_blank">培训考核</a></li>
+            <li><a href="#" target="_blank">平台流程</a></li>
+            <li><a href="#" target="_blank">老师入驻</a></li>
+            <li><a href="#" target="_blank">机构入驻</a></li>
+            <li><a href="#" target="_blank">微信公众号</a></li>
+        </div>
+    </ul>
+</div>
+
+<!--------------首页轮播图、新闻---------------->
+<div class="container">
+    <ul class="banner_container">
+        <div class="main_banner">
+            <div id="slider_major">
+                <!-- 主轮播广告-开始 -->
+                <ul>
+                    <li style="background-image: url('../images/slider_major01.jpg'); z-index: 3; opacity: 1;"></li>
+                    <li style="background-image: url('../images/slider_major02.jpg'); "></li>
+                    <li style="background-image: url('../images/slider_major03.jpg'); "></li>
+                    <li style="background-image: url('../images/slider_major04.jpg'); "></li>
+                    <li style="background-image: url('../images/slider_major05.jpg'); "></li>
+                    <li style="background-image: url('../images/slider_major06.jpg'); "></li>
+                    <li style="background-image: url('../images/slider_major07.jpg'); "></li>
+                    <li style="background-image: url('../images/slider_major08.jpg'); "></li>
+                </ul>
+                <div class="focus_mar_wrap">
+                    <ol class="focus_num">
+                        <li class="current">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                    </ol>
+                </div>
+                <script type="text/javascript">
+                    function getStyle(obj, attr) {
+                        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
+                    }
+
+                    function startMove(obj, json, fn) {
+                        clearInterval(obj.timer);
+                        obj.timer = setInterval(function () {
+                            doMove(obj, json, fn);
+                        }, 30);
+                    }
+
+                    function doMove(obj, json, fn) {
+                        var attr = '';
+                        var iCur = 0;
+                        var iStop = 0;
+
+                        for (attr in json) {
+                            if (attr == 'opacity') {
+                                iCur = parseInt(parseFloat(getStyle(obj, attr)) * 100);
+                            } else {
+                                iCur = parseInt(getStyle(obj, attr));
+                            }
+                            var iSpeed = (json[attr] - iCur) / 8;
+                            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                            if (iCur != json[attr]) {
+                                iStop++;
+                                if (attr == 'opacity') {
+                                    obj.style.filter = 'alpha(opacity:' + (iCur + iSpeed) + ')';
+                                    obj.style.opacity = (iCur + iSpeed) / 100;
+                                } else {
+                                    obj.style[attr] = iCur + iSpeed + 'px';
+                                }
+                            }
+                        }
+                        if (iStop == 0) {
+                            clearInterval(obj.timer);
+                            if (fn) {
+                                fn();
+                            }
+                        }
+                    }
+
+                    function play() {
+                        var oDiv = document.getElementById('slider_major');
+
+                        var oOl = oDiv.getElementsByTagName('ol')[0];
+                        var oUl = oDiv.getElementsByTagName('ul')[0];
+                        var aLiBtn = oOl.getElementsByTagName('li');
+                        var aLiAds = oUl.getElementsByTagName('li');
+                        var iNow = 0;
+                        var timer = null;
+                        var i = 0;
+
+                        for (i = 0; i < aLiBtn.length; i++) {
+                            aLiBtn[i].index = i;
+                            aLiBtn[i].onmouseover = function () {
+                                iNow = this.index;
+                                tab();
+                            };
+                        }
+
+                        function tab() {
+                            for (i = 0; i < aLiBtn.length; i++) {
+                                aLiBtn[i].className = '';
+                                startMove(aLiAds[i], {opacity: 0});
+                                aLiAds[i].style.zIndex = 2;//层级加在这里
+                            }
+                            aLiAds[iNow].style.zIndex++;//和这里
+                            aLiBtn[iNow].className = 'current';
+                            startMove(aLiAds[iNow], {opacity: 100});
+                        }
+
+                        oDiv.onmouseover = function () {
+                            clearInterval(timer);
+                        };
+
+                        oDiv.onmouseout = function () {
+                            timer = setInterval(function () {
+                                iNow = (iNow + 1) % aLiBtn.length;
+                                tab();
+                            }, 4000);
+                        };
+                        oDiv.onmouseout();
+                    }
+                    play();
+                </script>
+                <!-- 主轮播广告-结束 -->
+            </div>
+            <div id="right_major"><img src="../images/right_major01.jpg"/></div>
+            <div id="slider_minor">
+                <!-- 次轮播广告-开始 -->
+                <ul>
+                    <li style="z-index: 3; opacity: 1;"><a><img src="../images/201603021629.jpg"/></a><a><img
+                            src="../images/201603021632.jpg"/></a><a><img src="../images/201603021633.jpg"/></a><a><img
+                            src="../images/201603021634.jpg"/></a></li>
+                    <li><a><img src="../images/201603031021.jpg"/></a><a><img
+                            src="../images/201603031022.jpg"/></a><a><img src="../images/201603031023.jpg"/></a><a><img
+                            src="../images/201603031024.jpg"/></a><a><img src="../images/201603031025.jpg"/></a><a><img
+                            src="../images/201603031026.jpg"/></a><a><img src="../images/201603031027.jpg"/></a><a><img
+                            src="../images/201603031028.jpg"/></a></li>
+                    <li><a><img src="../images/201603030928.jpg"/></a><a><img
+                            src="../images/201603030929.jpg"/></a><a><img src="../images/201603030930.jpg"/></a><a><img
+                            src="../images/201603030931.jpg"/></a><a><img src="../images/201603030932.jpg"/></a><a><img
+                            src="../images/201603030933.jpg"/></a><a><img src="../images/201603030934.jpg"/></a><a><img
+                            src="../images/201603030935.jpg"/></a></li>
+                    <li><a><img src="../images/slider_minor04.jpg"/></a></li>
+                </ul>
+                <div class="focus_min_wrap">
+                    <ol class="focus_num">
+                        <li class="current">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                    </ol>
+                </div>
+                <script type="text/javascript">
+                    function getStyle(obj, attr) {
+                        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
+                    }
+
+                    function startMove(obj, json, fn) {
+                        clearInterval(obj.timer);
+                        obj.timer = setInterval(function () {
+                            doMove(obj, json, fn);
+                        }, 30);
+                    }
+
+                    function doMove(obj, json, fn) {
+                        var attr = '';
+                        var iCur = 0;
+                        var iStop = 0;
+
+                        for (attr in json) {
+                            if (attr == 'opacity') {
+                                iCur = parseInt(parseFloat(getStyle(obj, attr)) * 100);
+                            } else {
+                                iCur = parseInt(getStyle(obj, attr));
+                            }
+                            var iSpeed = (json[attr] - iCur) / 8;
+                            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                            if (iCur != json[attr]) {
+                                iStop++;
+                                if (attr == 'opacity') {
+                                    obj.style.filter = 'alpha(opacity:' + (iCur + iSpeed) + ')';
+                                    obj.style.opacity = (iCur + iSpeed) / 100;
+                                } else {
+                                    obj.style[attr] = iCur + iSpeed + 'px';
+                                }
+                            }
+                        }
+                        if (iStop == 0) {
+                            clearInterval(obj.timer);
+                            if (fn) {
+                                fn();
+                            }
+                        }
+                    }
+
+                    function play() {
+                        var oDiv = document.getElementById('slider_minor');
+
+                        var oOl = oDiv.getElementsByTagName('ol')[0];
+                        var oUl = oDiv.getElementsByTagName('ul')[0];
+                        var aLiBtn = oOl.getElementsByTagName('li');
+                        var aLiAds = oUl.getElementsByTagName('li');
+                        var iNow = 0;
+                        var timer = null;
+                        var i = 0;
+
+                        for (i = 0; i < aLiBtn.length; i++) {
+                            aLiBtn[i].index = i;
+                            aLiBtn[i].onmouseover = function () {
+                                iNow = this.index;
+                                tab();
+                            };
+                        }
+
+                        function tab() {
+                            for (i = 0; i < aLiBtn.length; i++) {
+                                aLiBtn[i].className = '';
+                                startMove(aLiAds[i], {opacity: 0});
+                                aLiAds[i].style.zIndex = 2;//层级加在这里
+                            }
+                            aLiAds[iNow].style.zIndex++;//和这里
+                            aLiBtn[iNow].className = 'current';
+                            startMove(aLiAds[iNow], {opacity: 100});
+                        }
+
+                        oDiv.onmouseover = function () {
+                            clearInterval(timer);
+                        };
+
+                        oDiv.onmouseout = function () {
+                            timer = setInterval(function () {
+                                iNow = (iNow + 1) % aLiBtn.length;
+                                tab();
+                            }, 3000);
+                        };
+                        oDiv.onmouseout();
+                    }
+                    play();
+                </script>
+                <!-- 次轮播广告-开始 -->
+            </div>
+            <div id="right_minor"><img src="../images/right_minor01.jpg"/></div>
+        </div>
+
+        <div class="main_info">
+            <!-- 登录框-开始 -->
+            <div class="userinfo">
+                <div class="u1">
+                    <a href="#" target="_blank"><img src="../images/headori.jpg" alt="头像"></a>
+
+                    <h4>hi，15106129179</h4>
+                    <p>欢迎来到君睿在线</p>
+
+
+                </div>
+                <div class="u2">
+                    <input name="" type="button" value="登 录" class="round bluebtn"/>
+                    <input name="" type="button" value="学员注册" class="round orgbtn"/>
+                    <!-- 登录以后，显示这2个按钮
+                    <input name="" type="button" value="开始培训" class="round bluebtn" style="display:none;"/>
+                    <input name="" type="button" value="退出登录" class="round orgbtn" style="display:none;"/>
+                    -->
+                </div>
+                <table class="tbbox">
+                    <tr>
+                        <td style="border-right:1px solid #E8E8E8;"><a>老师注册</a></td>
+                        <td><a>机构注册</a></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- 登录框-结束 -->
+
+            <!-- 选项卡1开始 -->
+            <div class="nTab">
+                <div class="TabTitle">
+                    <ul id="myTab">
+                        <li class="active" onmouseover="nTabs(this,0);">热点关注</li>
+                        <li class="normal" onmouseover="nTabs(this,1);">最新资讯</li>
+                        <li class="normal" onmouseover="nTabs(this,2);">政策法规</li>
+                    </ul>
+                </div>
+                <div class="TabContent">
+                    <div id="myTab_Content0">
+                        <!--列表开始-->
+                        <div class="list_notice">
+                            <a href="#" target="_blank">EB1524 特种设备作业人员实作考试（现场实操）时间地点座位对应表</a>
+                            <a href="#" target="_blank">E1522 特种设备作业人员考试时间地点座位对应表</a>
+                            <a href="#" target="_blank">EB1524 特种设备作业人员实作考试（现场实操）时间地点座位对应表</a>
+                            <a href="#" target="_blank">E1522 特种设备作业人员考试时间地点座位对应表</a>
+                            <a class="more"></a>
+                        </div>
+                        <!--列表结束-->
+                    </div>
+                    <div id="myTab_Content1" class="none">
+                        <!--列表开始-->
+                        <div class="list_notice">
+                            <a href="#" target="_blank">实作考试（现场实操）时间地点座位对应表</a>
+                            <a href="#" target="_blank">考试时间地点座位对应表</a>
+                            <a href="#" target="_blank">人员实作考试（现场实操）时间地点</a>
+                            <a href="#" target="_blank">特种设备作业人员复审申请表填表说明</a>
+                        </div>
+                        <!--列表结束-->
+                    </div>
+                    <div id="myTab_Content2" class="none">
+                        <!--列表开始-->
+                        <div class="list_notice">
+                            <a href="#" target="_blank">GB 16899-2011宣贯讲义</a>
+                            <a href="#" target="_blank">《特种设备安全法》</a>
+                            <a href="#" target="_blank">质检总局关于印发《起重机械安全管理人员和作业人员考核大纲》的通知(国质检特〔2013〕680号）</a>
+                            <a href="#" target="_blank">特种设备作业人员作业种类与项目目录95号</a>
+                        </div>
+                        <!--列表结束-->
+                    </div>
+                </div>
+            </div>
+            <!-- 选项卡1结束 -->
+            <hr/>
+            <!-- 选项卡2开始 -->
+            <div class="nTab">
+                <div class="TabTitle">
+                    <ul id="myTab2">
+                        <li class="active" onmouseover="nTabs(this,0);">培训计划</li>
+                        <li class="normal" onmouseover="nTabs(this,1);">考试动态</li>
+                        <li class="normal" onmouseover="nTabs(this,2);">招聘信息</li>
+                    </ul>
+                </div>
+                <div class="TabContent">
+                    <div id="myTab2_Content0">
+                        <!--列表开始-->
+                        <div class="list_notice">
+                            <a href="#" target="_blank">实作考试（现场实操）时间地点座位对应表</a>
+                            <a href="#" target="_blank">考试时间地点座位对应表</a>
+                            <a href="#" target="_blank">人员实作考试（现场实操）时间地点</a>
+                            <a href="#" target="_blank">特种设备作业人员复审申请表填表说明</a>
+                            <a class="more"></a>
+                        </div>
+                        <!--列表结束-->
+                    </div>
+                    <div id="myTab2_Content1" class="none">
+                        <!--列表开始-->
+                        <div class="list_notice">
+                            <a href="#" target="_blank">GB 16899-2011宣贯讲义</a>
+                            <a href="#" target="_blank">《特种设备安全法》</a>
+                            <a href="#" target="_blank">质检总局关于印发《起重机械安全管理人员和作业人员考核大纲》的通知(国质检特〔2013〕680号）</a>
+                            <a href="#" target="_blank">特种设备作业人员作业种类与项目目录95号</a>
+                        </div>
+                        <!--列表结束-->
+                    </div>
+                    <div id="myTab2_Content2" class="none">
+                        <!--列表开始-->
+                        <div class="list_notice">
+                            <a href="#" target="_blank">非遗入驻，传播传承民族文化</a>
+                            <a href="#" target="_blank">牵手流浪儿童，共圆艺术之梦</a>
+                            <a href="#" target="_blank">你的学习梦，我来帮忙圆</a>
+                            <a href="#" target="_blank">携手免费午餐，助力公益事业</a>
+                        </div>
+                        <!--列表结束-->
+                    </div>
+                </div>
+            </div>
+            <!-- 选项卡2结束 -->
+
+
+        </div>
+    </ul>
+</div>
+<!-------------热门课程------------>
+<div class="hotcourse">
+    <div class="tit">
+        <h2>热门课程</h2>
+        <a class="more">更多</a>
+    </div>
+    <div class="video-list">
+        <a href="#" target="_blank">
+            <img src="../images/pic_none_01.jpg"/>
+            <h4>NICE3000new技术交流NICE3000new技术交流</h4><i>视频</i>
+            <br class="spacer"/>
+            <p>产品介绍调试说明和功能参数故障说明和应用方案</p>
+        </a>
+        <a href="#" target="_blank">
+            <img src="../images/pic_none_02.jpg"/>
+            <h4>NICE3000new技术交流</h4><i>音频</i>
+            <br class="spacer"/>
+            <p>产品介绍调试说明和功能参数故障说明和</p>
+        </a>
+        <a href="#" target="_blank">
+            <img src="../images/pic_none_03.jpg"/>
+            <h4>NICE3000new技术交流</h4><i>音频</i>
+            <br class="spacer"/>
+            <p>产品介绍调试说明和功能参数故障说明和应用方案</p>
+        </a>
+        <a href="#" target="_blank" style="margin-right:0px;">
+            <img src="../images/pic_none_05.jpg"/>
+            <h4>NICE3000new技术交流</h4><i>试用</i>
+            <br class="spacer"/>
+            <p>产品介绍调试说明和功能参数故障说明和应用方案</p>
+        </a>
+    </div>
+</div>
+
+<!---------footer-底部-------->
+<div class="foot">
+
+    <div class="foot_help">
+        <i>END</i>
+        <ul class="mod" style="width:18%">
+            <div class="mod-wrap" style="padding: 0px 0px 0px 25px;">
+                <h1>服务支持</h1>
+                <a>平台流程</a><a>老师入驻</a><a>机构入驻</a><br class="spacer"/><a>老师帮助</a><a>机构帮助</a><a>学员帮助</a>
+            </div>
+        </ul>
+        <ul class="mod" style="width:32%">
+            <div class="mod-wrap">
+                <h4>友情链接</h4>
+                <a href="http://www.tskspx.com/" target="_blank">特种设备作业人员网上培训</a><a href="http://www.aqscpx.com/"
+                                                                                    target="_blank">特种作业人员安全技术网上培训</a><a
+                    href="http://www.jewel-ray.com/" target="_blank">上海君睿信息技术有限公司</a>
+            </div>
+        </ul>
+        <ul class="mod">
+            <div class="mod-wrap">
+                <h2>帮助中心</h2>
+                <a class="disable">消费者保障</a><a class="disable">视频拍摄</a><a class="disable">支付问题</a><br class="spacer"/><a
+                    class="disable">意见反馈</a><a class="disable">侵权投诉</a>
+            </div>
+        </ul>
+        <ul class="modlast">
+            <div class="mod-wrap">
+                <h3>关于君睿在线</h3>
+                <a href="http://www.tskspx.com/RedirectPage.do?page=wechat_intro" target="_blank">官方微信</a><a>联系我们</a><a>加入我们</a><br
+                    class="spacer"/><a class="disable">网站条款</a><a class="disable">免责声明</a>
+            </div>
+        </ul>
+    </div>
+
+    <div class="foot_link">
+        <a>网站条款</a><a>活动公告</a><a>新闻报道</a><a>申请合作</a><a>网站地图</a>
+    </div>
+
+    <div class="foot_copyright">
+        <p>Copyright © 2015 - 2018　All Rights Reserved　版权所有·上海君睿信息技术有限公司　|　沪ICP备15000120号<br/>
+            君睿在线是网络服务平台方，若您发现您的权利被侵害，请发起知识产权投诉
+        </p>
+        <i>（建议使用IE9、IE10、IE11、Firefox、Chrome浏览器）</i>
+    </div>
+
+</div>
+
+
+<!--弹出窗口黑色遮罩层-->
+<div class="mask" style="display:none;"></div>  <!--不显示的时候 style="display:none;"-->
+<!--弹出登录窗口-->
+<div class="inlog errorline" style="display:none;">
+    <table class="inlogtb1">
+        <tr>
+            <td colspan="2" class="blue1 t1">用户登录</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="t2"><input id="input_yh" type="text" name="textfield" class="input_yh"/><label
+                    class="placeholder1" for="input_yh" onClick="this.style.visibility='hidden'">手机号/身份证号</label></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="t3"><input id="input_mm" type="password" name="textfield2" class="input_mm"/><label
+                    class="placeholder2" for="input_mm" onClick="this.style.visibility='hidden'">密码</label></td>
+        </tr>
+        <tr>
+            <td class="t4"><input type="checkbox" name="checkbox" value="checkbox"/>
+                记住用户名密码
+            </td>
+            <td class="t4">忘记密码？</td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="Submit" value="登 录" class="round bluebtn"/></td>
+            <td class="t5"><input type="submit" name="Submit" value="取 消" class="round graybtn"/></td>
+        </tr>
+    </table>
+    <!-------错误提醒------->
+    <div id="errorAlert">
+        <div class="error-hd"></div>
+        <div class="error-mid arrorline">
+
+            <div class="error-tt">
+                <p id="errorTitle">有错误时提示信息有错误时提示信息有错误时提示信息</p>
+            </div>
+            <div class="alert-tt">
+                <p id="errorTitle">默认提示信息息</p>
+            </div>
+
+            <div id="errorDetail" class="error-detail" style="display: ''">
+                <p>提示：</p>
+                <p id="errorInfo" class="error-info">
+                    1、用户名可以填写身份证号或者手机号；
+                    <br>2、身份证号必须为18位，不区分大小写；
+                    <br>3、手机号为11位长度；
+                    <br>4、登录密码不区分大小写；
+                    <br>5、如忘记密码，请点击 <a onclick="window.open('/toFindPwd.do?userid=' + jQuery('#userid').val())">这里</a>
+                    找回。
+                </p>
+            </div>
+        </div>
+        <div class="error-ft"></div>
+        <div id="errorArr" class="error-arrow" style="top: 48px;"></div>
+    </div>
+    <!-----------微信登录-start---------->
+    <div class="top">
+        <ul id="jump">
+            <li style="height:50px"><a id="weixin" href="javascript:void(0)" onMouseOver="showEWM()"
+                                       onMouseOut="hideEWM()">
+                <div id="EWM"><img
+                        src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHk7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL3dFeWJ5RjNsZEhzTlJMaEk5R0oxAAIEN1pUVQMEgDoJAA%3D%3D"/>
+                </div>
+            </a></li>
+        </ul>
+    </div>
+    <script>
+        function showEWM() {
+            document.getElementById("EWM").style.display = 'block';
+        }
+        function hideEWM() {
+            document.getElementById("EWM").style.display = 'none';
+        }
+        jQuery(document).ready(function () {
+
+            jQuery("#top").click(function () {
+                jQuery('body,html').animate({
+                        scrollTop: 0
+                    },
+                    1000);
+                return false;
+            });
+
+            jQuery.ajax({
+                type: "POST",
+                url: "wechatQrTicket.do",
+                dataType: "json",
+                data: {
+                    account_id: -1
+                },
+                async: true,
+                cache: false,
+                success: function (qr, status) {
+                    if (qr.ticket) {
+                        jQuery("#EWM").attr("src", "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + qr.ticket);
+                    }
+                }
+            });
+        });
+    </script>
+    <!-----------微信登录-end---------->
+</div>
+
+
+<div id="kfwxpic"><img src="http://open.weixin.qq.com/qr/code/?username=tskspx "/><br/>微信扫描二维码<br/>关注培训平台手机版</div>
+<div id="kfleftDiv" style="top:80px;left:5px;display:none;"></div>
+<div id="kfrightDiv" style="top:80px;right:0px;">
+    <div id="kfright2" class="kfitemFloat">
+        <a class="a1" target="_blank" onclick="openKfwin();"></a>
+        <a class="a2" target="_blank" href="http://www.tskspx.com/RedirectPage.do?page=wechat_intro"
+           onmouseover="displayKfwxpic(false)" onmouseout="displayKfwxpic(true)"></a>
+    </div>
+</div>
+<script>
+    var _kfwin = null;
+    function openKfwin() {
+        if (_kfwin != null && !_kfwin.closed) {
+            _kfwin.focus();
+            return;
+        }
+        _kfwin = window.open('http://t.ibangkf.com/i/chat-jewelray.html?l=jewelray&page=http%3A//www.tskspx.com/index.do', '', 'height=500, width=660,top=200,left=400,resizable=yes,toolbar=no, menubar=no, scrollbars=no, location=no, status=no');
+    }
+
+    document.onscroll = function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        jQuery('#kfleftDiv').css('top', (scrollTop + 80) + "px");
+        jQuery('#kfrightDiv').css('top', (scrollTop + 80) + "px");
+    };
+    function displayKfwxpic(isHide) {
+        document.getElementById("kfwxpic").style.display = isHide ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>

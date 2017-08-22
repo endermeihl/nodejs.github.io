@@ -1,0 +1,18 @@
+{
+  "typesecond": [{
+    "typefirst": "内容1",
+    "name": "子内容1",
+    "url":"1.html",
+    "isautoshow": true
+  },{
+    "typefirst": "内容2",
+    "name": "子内容1",
+    "url":"1.html",
+    "isautoshow": true
+  }],
+  "typefirst": [
+    "内容1",
+    "内容2",
+    "内容3"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "_comment": "FOR DETAILED FORMAT LOOK AT https://docs.docker.com/reference/api",
+  "AttachStdin": true,
+  "OpenStdin": true,
+  "HostConfig": {
+    "PortBindings":{ "8082/tcp": [{ "HostIp": "0.0.0.0", "HostPort": "8082" }] }
+  }
+}
+
+
